@@ -3,6 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import authgear from '@authgear/web';
+
+authgear
+  .configure({
+    endpoint: 'https://react-tutorial.authgearapps.com',
+    clientID: 'bdeabc526d0ddacf',
+    sessionType: 'refresh_token'
+  })
+  .then(
+    () => {
+      console.log('Success');
+    },
+    err => {
+      console.log(err);
+    }
+  );
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
