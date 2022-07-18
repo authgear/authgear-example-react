@@ -15,8 +15,6 @@ export default function Home() {
     (async () => {
       setIsLoading(true);
       try {
-        // const meResp = await authgear.fetch(`${apiEndpoint}/me`);
-        // const isLoggedIn = (await meResp.json()).user;
         const sessionState = authgear.sessionState;
         if (sessionState === "AUTHENTICATED"){
           setIsLoggedIn(true);
@@ -67,7 +65,6 @@ export default function Home() {
         }
       );
   }, [setIsLoggedIn]);
-//   console.log("Home");
   return (
     <div>
       <h1>Home Page</h1>
