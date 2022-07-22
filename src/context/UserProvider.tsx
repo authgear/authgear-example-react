@@ -1,13 +1,12 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import authgear from "@authgear/web";
 
 interface UserContextValue {
   isLoggedIn: boolean;
-  setIsLoggedIn: (value: boolean) => void;
 }
 
 export const UserContext = createContext<UserContextValue>({
   isLoggedIn: false,
-  setIsLoggedIn: () => {},
 });
 
 interface UserContextProviderProps {
@@ -19,10 +18,22 @@ const UserContextProvider: React.FC<UserContextProviderProps> = ({
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
+  useEffect(() => {
+    authgear.delegate = {
+      onSessionStateChange: (container) => {
+        const sessionState = container.sessionState;
+        if (sessionState === "AUTHENTICATED") {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      },
+    };
+  }, [setIsLoggedIn]);
+
   const contextValue = React.useMemo<UserContextValue>(() => {
     return {
       isLoggedIn,
-      setIsLoggedIn,
     };
   }, [isLoggedIn]);
 
