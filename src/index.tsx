@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import authgear from "@authgear/web";
 
+export const endpoint = "";
+export const clientID = "";
+
 async function init() {
   try {
     await authgear.configure({
-      endpoint: "https://react-tutorial.authgearapps.com",
-      clientID: "bdeabc526d0ddacf",
+      endpoint,
+      clientID,
       sessionType: "refresh_token",
     });
   } finally {
