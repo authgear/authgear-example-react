@@ -135,6 +135,10 @@ yarn-error.log*
 # testing
 /coverage
 
+# parcel
+.parcel-cache/
+parcel-bundle-reports/
+
 # production
 /build
 
