@@ -1,34 +1,32 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
-import { UserContext } from './UserContext';
-import authgear from '@authgear/web';
+import { useEffect, useState, useCallback, useContext } from "react";
+import { UserContext } from "./UserContext";
+import authgear from "@authgear/web";
 // import Config from '../../config';
 
 // const { apiEndpoint } = Config;
 
 export default function Home() {
-  const [greetingMessage, setGreetingMessage] = useState<string>('');
+  const [greetingMessage, setGreetingMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-
 
   useEffect(() => {
     (async () => {
       setIsLoading(true);
       try {
         const sessionState = authgear.sessionState;
-        if (sessionState === "AUTHENTICATED"){
+        if (sessionState === "AUTHENTICATED") {
           setIsLoggedIn(true);
           await authgear
             .fetchUserInfo()
             .then((userInfo) => {
-              setGreetingMessage("The current User sub: "+ userInfo.sub );
+              setGreetingMessage("The current User sub: " + userInfo.sub);
             })
             .catch((e) => {
-                console.log("Not Logged in?");
-            })
+              console.log("Not Logged in?");
+            });
         }
-      } 
-      finally {
+      } finally {
         setIsLoading(false);
       }
     })();
@@ -37,14 +35,14 @@ export default function Home() {
   const startLogin = useCallback(() => {
     authgear
       .startAuthorization({
-        redirectURI: 'http://localhost:3000/auth-redirect',
-        prompt: 'login'
+        redirectURI: "http://localhost:3000/auth-redirect",
+        prompt: "login",
       })
       .then(
         () => {
           // started authorization, user should be redirected to Authgear
         },
-        err => {
+        (err) => {
           // failed to start authorization
         }
       );
@@ -53,14 +51,14 @@ export default function Home() {
   const logout = useCallback(() => {
     authgear
       .logout({
-        redirectURI: 'http://localhost:3000/logout-redirect'
+        redirectURI: "http://localhost:3000/logout-redirect",
       })
       .then(
         () => {
           setIsLoggedIn(false);
-          setGreetingMessage('');
+          setGreetingMessage("");
         },
-        err => {
+        (err) => {
           console.error(err);
         }
       );
@@ -68,7 +66,7 @@ export default function Home() {
   return (
     <div>
       <h1>Home Page</h1>
-      {isLoading && 'Loading'}
+      {isLoading && "Loading"}
       {greetingMessage ? <span>{greetingMessage}</span> : null}
       <div>
         <button onClick={startLogin}>Login</button>
@@ -76,7 +74,9 @@ export default function Home() {
       {isLoggedIn && (
         <div>
           <button onClick={logout}>Logout</button>
-          <a target="_blank" rel="noreferrer"
+          <a
+            target="_blank"
+            rel="noreferrer"
             href="https://react-tutorial.authgearapps.com/settings"
           >
             User Setting

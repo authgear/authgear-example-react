@@ -1,7 +1,7 @@
-import { useEffect, useContext, useRef } from 'react';
-import { useNavigate } from 'react-router';
-import { UserContext } from './UserContext';
-import authgear from '@authgear/web';
+import { useEffect, useContext, useRef } from "react";
+import { useNavigate } from "react-router";
+import { UserContext } from "./UserContext";
+import authgear from "@authgear/web";
 
 export default function AuthRedirect() {
   const usedToken = useRef(false);
@@ -10,13 +10,13 @@ export default function AuthRedirect() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!usedToken.current){
+    if (!usedToken.current) {
       authgear.finishAuthorization().then(
-        result => {
+        (result) => {
           userContext.setIsLoggedIn(!!result.userInfo);
-          navigate('/');
+          navigate("/");
         },
-        err => {
+        (err) => {
           console.error(err);
         }
       );

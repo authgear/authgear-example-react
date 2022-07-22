@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import AuthRedirect from './AuthRedirect';
-import { UserContextProvider } from './UserContext';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import AuthRedirect from "./AuthRedirect";
+import { UserContextProvider } from "./UserContext";
+import "./App.css";
 
 function App() {
   return (
