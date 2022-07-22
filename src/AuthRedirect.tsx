@@ -1,29 +1,28 @@
-import { useEffect, useContext, useRef } from "react";
-import { useNavigate } from "react-router";
-import { UserContext } from "./UserContext";
+import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import authgear from "@authgear/web";
 
-export default function AuthRedirect() {
+const AuthRedirect: React.FC = () => {
   const usedToken = useRef(false);
-  const userContext = useContext(UserContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!usedToken.current) {
-      authgear.finishAuthorization().then(
-        (result) => {
-          userContext.setIsLoggedIn(!!result.userInfo);
-          navigate("/");
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-      usedToken.current = true;
+    async function updateToken() {
+      try {
+        await authgear.finishAuthorization();
+      } finally {
+        navigate("/");
+        usedToken.current = true;
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+    if (!usedToken.current) {
+      updateToken().catch((e) => console.error(e));
+    }
+  }, [navigate]);
 
   return <></>;
-}
+};
+
+export default AuthRedirect;
