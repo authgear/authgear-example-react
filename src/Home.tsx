@@ -70,7 +70,7 @@ const Home: React.FC = () => {
           <button type="button" onClick={logout}>
             Logout
           </button>
-          <a target="_blank" rel="noreferrer" href={endpoint + "/settings"}>
+          <a target="_blank" rel="noreferrer" href={`${endpoint}/settings`}>
             User Setting
           </a>
         </div>
