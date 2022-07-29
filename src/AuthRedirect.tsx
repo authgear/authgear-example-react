@@ -10,7 +10,7 @@ const AuthRedirect: React.FC = () => {
   useEffect(() => {
     async function updateToken() {
       try {
-        await authgear.finishAuthorization();
+        await authgear.finishAuthentication();
       } finally {
         navigate("/");
         usedToken.current = true;

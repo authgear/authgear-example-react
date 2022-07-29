@@ -28,7 +28,7 @@ const Home: React.FC = () => {
 
   const startLogin = useCallback(() => {
     authgear
-      .startAuthorization({
+      .startAuthentication({
         redirectURI: "http://localhost:4000/auth-redirect",
         prompt: "login",
       })
