@@ -60,11 +60,13 @@ const Home: React.FC = () => {
       <h1>Home Page</h1>
       {isLoading && "Loading"}
       {greetingMessage ? <span>{greetingMessage}</span> : null}
-      <div>
-        <button type="button" onClick={startLogin}>
-          Login
-        </button>
-      </div>
+      {!isLoggedIn && (
+        <div>
+          <button type="button" onClick={startLogin}>
+            Login
+          </button>
+        </div>
+      )}
       {isLoggedIn && (
         <div>
           <button type="button" onClick={logout}>
