@@ -1,6 +1,7 @@
 # Getting Started with Authgear React Tutorial Demo App
 
 This repo is the sample code of this tutorial: https://docs.authgear.com/tutorials/spa/react
+
 You can follow the tutorial to learn how to integrate Authgear with your React single page applications.
 
 ## Environment setup
