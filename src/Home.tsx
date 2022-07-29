@@ -44,14 +44,18 @@ const Home: React.FC = () => {
   }, []);
 
   const logout = useCallback(() => {
-    authgear.logout().then(
-      () => {
-        setGreetingMessage("");
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    authgear
+      .logout({
+        redirectURI: "http://localhost:4000/",
+      })
+      .then(
+        () => {
+          setGreetingMessage("");
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
   }, []);
 
   return (
