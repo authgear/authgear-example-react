@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App";
 import authgear from "@authgear/web";
 
-export const endpoint = "";
-export const clientID = "";
+export const endpoint = ""; // The Authgear endpoint of your project e.g. https://my-app.authgearapps.com
+export const clientID = ""; // Client ID can be obtained in the "Applications" page of the Portal
 
 async function init() {
   try {
