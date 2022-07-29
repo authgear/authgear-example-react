@@ -58,6 +58,12 @@ const Home: React.FC = () => {
       );
   }, []);
 
+  const userSetting = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    authgear.openURL(`${endpoint}/settings`);
+  }, []);
+
   return (
     <div>
       {/* eslint-disable-next-line react/forbid-elements */}
@@ -77,7 +83,7 @@ const Home: React.FC = () => {
             Logout
           </button>
           <br />
-          <a target="_blank" rel="noreferrer" href={`${endpoint}/settings`}>
+          <a target="_blank" rel="noreferrer" onClick={userSetting} href="#">
             User Setting
           </a>
         </div>
