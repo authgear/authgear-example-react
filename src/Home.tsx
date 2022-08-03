@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import { UserContext } from "./context/UserProvider";
-import authgear from "@authgear/web";
-import { endpoint } from ".";
+import authgear, { Page } from "@authgear/web";
 
 const Home: React.FC = () => {
   const [greetingMessage, setGreetingMessage] = useState<string>("");
@@ -58,11 +57,14 @@ const Home: React.FC = () => {
       );
   }, []);
 
-  const userSetting = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    authgear.openURL(`${endpoint}/settings`);
-  }, []);
+  const userSetting = useCallback(
+    async (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      await authgear.open(Page.Settings);
+    },
+    []
+  );
 
   return (
     <div>
