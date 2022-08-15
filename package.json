@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "parcel serve --port 4000 --no-cache './src/*.html'",
-    "build": "parcel build --no-cache './src/*.html'",
+    "start": "parcel serve --port 4000 --no-cache ./src/index.html",
+    "build": "parcel build --no-cache ./src/index.html",
     "typecheck": "tsc",
     "format": "prettier --list-different --write './src/**/*.{js,ts,jsx,tsx,css,scss,html}'",
     "eslint": "eslint './src/**/*.{js,ts,jsx,tsx}'"
