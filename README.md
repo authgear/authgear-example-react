@@ -6,12 +6,14 @@ You can follow the tutorial to learn how to integrate Authgear with your React s
 
 ## Environment setup
 
-Setup the `endpoint` and `clientID` variables in a `.env` file using the following fields:
+Setup the `endpoint` and `clientID` variables in a `.env` file on the root directory of your project using the following fields:
 ```
 AUTHGEAR_CLIENT_ID=your Authgear app client id
 AUTHGEAR_ENDPOINT=your Authgear project URL
-AUTHGEAR_REDIRECT_URL=your redirect URI
+AUTHGEAR_REDIRECT_URL=http://localhost:4000/auth-redirect
 ```
+
+Ensure to add `http://localhost:4000/auth-redirect` as a redirect URI for your application in Authgear Portal.
 
 Run `npm install` to install project dependencies.
 

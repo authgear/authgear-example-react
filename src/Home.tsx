@@ -1,6 +1,6 @@
 // src/Home.tsx  
 import React, { useEffect, useState, useCallback, useContext } from "react";
-import authgear, { PromptOption } from "@authgear/web";
+import authgear, { Page, PromptOption } from "@authgear/web";
 import { UserContext } from "./context/UserProvider";
 
 const Home: React.FC = () => {
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
   const startLogin = useCallback(() => {
     authgear
       .startAuthentication({
-        redirectURI: "http://localhost:4000/auth-redirect",
+        redirectURI: import.meta.env.VITE_AUTHGEAR_REDIRECT_URL,
         prompt: PromptOption.Login,
       })
       .then(
@@ -37,10 +37,35 @@ const Home: React.FC = () => {
           // started authentication, user should be redirected to Authgear
         },
         (err) => {
-          // failed to start authentication
+          // failed to start authorization
+          console.error(err);
         }
       );
   }, []);
+
+  const logout = useCallback(() => {
+    authgear
+      .logout({
+        redirectURI: "http://localhost:4000/",
+      })
+      .then(
+        () => {
+          setGreetingMessage("");
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+  }, []);
+
+  const userSetting = useCallback(
+    async (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      await authgear.open(Page.Settings);
+    },
+    []
+  );
 
   return (
     <div>
@@ -52,6 +77,18 @@ const Home: React.FC = () => {
           <button type="button" onClick={startLogin}>
             Login
           </button>
+        </div>
+      )}
+
+      {isLoggedIn && (
+        <div>
+          <button type="button" onClick={logout}>
+            Logout
+          </button>
+          <br />
+          <a target="_blank" rel="noreferrer" onClick={userSetting} href="#">
+            User Setting
+          </a>
         </div>
       )}
     </div>
