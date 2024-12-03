@@ -1,6 +1,7 @@
+// src/Home.tsx  
 import React, { useEffect, useState, useCallback, useContext } from "react";
+import authgear, { Page, PromptOption } from "@authgear/web";
 import { UserContext } from "./context/UserProvider";
-import authgear, { Page } from "@authgear/web";
 
 const Home: React.FC = () => {
   const [greetingMessage, setGreetingMessage] = useState<string>("");
@@ -28,12 +29,12 @@ const Home: React.FC = () => {
   const startLogin = useCallback(() => {
     authgear
       .startAuthentication({
-        redirectURI: "http://localhost:4000/auth-redirect",
-        prompt: "login",
+        redirectURI: import.meta.env.VITE_AUTHGEAR_REDIRECT_URL,
+        prompt: PromptOption.Login,
       })
       .then(
         () => {
-          // started authorization, user should be redirected to Authgear
+          // started authentication, user should be redirected to Authgear
         },
         (err) => {
           // failed to start authorization
@@ -68,7 +69,6 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {/* eslint-disable-next-line react/forbid-elements */}
       <h1>Home Page</h1>
       {isLoading && "Loading"}
       {greetingMessage ? <span>{greetingMessage}</span> : null}
@@ -79,6 +79,7 @@ const Home: React.FC = () => {
           </button>
         </div>
       )}
+
       {isLoggedIn && (
         <div>
           <button type="button" onClick={logout}>

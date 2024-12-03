@@ -1,8 +1,9 @@
+// src/App.tsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import AuthRedirect from "./AuthRedirect";
-import UserContextProvider from "./context/UserProvider";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import AuthRedirect from './AuthRedirect';
+import UserContextProvider from './context/UserProvider';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,6 @@ const App: React.FC = () => {
       </Router>
     </UserContextProvider>
   );
-};
+}
 
 export default App;

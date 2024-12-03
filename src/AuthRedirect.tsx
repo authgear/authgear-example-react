@@ -1,3 +1,4 @@
+// src/AuthRedirect.tsx
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import authgear from "@authgear/web";
