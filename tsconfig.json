@@ -1,25 +1,7 @@
-// This file is for typechecking only.
-// Parcel uses Babel to compile our TypeScript source files.
-// So here we only include options that are related to typechecking.
 {
-  "compilerOptions": {
-    "target": "ES2015",
-    "lib": ["DOM", "ES2015"],
-    "moduleResolution": "node",
-    "module": "es2020",
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
-  },
-  "include": [
-    "./src"
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
   ]
 }

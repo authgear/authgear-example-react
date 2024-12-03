@@ -1,6 +1,7 @@
+// src/Home.tsx  
 import React, { useEffect, useState, useCallback, useContext } from "react";
+import authgear, { PromptOption } from "@authgear/web";
 import { UserContext } from "./context/UserProvider";
-import authgear, { Page } from "@authgear/web";
 
 const Home: React.FC = () => {
   const [greetingMessage, setGreetingMessage] = useState<string>("");
@@ -29,46 +30,20 @@ const Home: React.FC = () => {
     authgear
       .startAuthentication({
         redirectURI: "http://localhost:4000/auth-redirect",
-        prompt: "login",
+        prompt: PromptOption.Login,
       })
       .then(
         () => {
-          // started authorization, user should be redirected to Authgear
+          // started authentication, user should be redirected to Authgear
         },
         (err) => {
-          // failed to start authorization
-          console.error(err);
+          // failed to start authentication
         }
       );
   }, []);
-
-  const logout = useCallback(() => {
-    authgear
-      .logout({
-        redirectURI: "http://localhost:4000/",
-      })
-      .then(
-        () => {
-          setGreetingMessage("");
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-  }, []);
-
-  const userSetting = useCallback(
-    async (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      e.stopPropagation();
-      await authgear.open(Page.Settings);
-    },
-    []
-  );
 
   return (
     <div>
-      {/* eslint-disable-next-line react/forbid-elements */}
       <h1>Home Page</h1>
       {isLoading && "Loading"}
       {greetingMessage ? <span>{greetingMessage}</span> : null}
@@ -77,17 +52,6 @@ const Home: React.FC = () => {
           <button type="button" onClick={startLogin}>
             Login
           </button>
-        </div>
-      )}
-      {isLoggedIn && (
-        <div>
-          <button type="button" onClick={logout}>
-            Logout
-          </button>
-          <br />
-          <a target="_blank" rel="noreferrer" onClick={userSetting} href="#">
-            User Setting
-          </a>
         </div>
       )}
     </div>
