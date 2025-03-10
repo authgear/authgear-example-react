@@ -77,6 +77,9 @@ const Home: React.FC = () => {
           <button type="button" onClick={startLogin}>
             Login
           </button>
+          <div className="callout" style={{backgroundColor: "#eee", padding: "4px", marginTop:"10px", maxWidth: "400px"}}>
+            HINT: <br />If you see a CORS error when "Login" is clicked, make sure "Authorized Redirect URI" is correctly set in the Authgear portal for this application client.
+          </div>
         </div>
       )}
 
