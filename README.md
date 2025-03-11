@@ -12,6 +12,7 @@ VITE_AUTHGEAR_CLIENT_ID=your Authgear app client id
 VITE_AUTHGEAR_ENDPOINT=your Authgear project URL
 VITE_AUTHGEAR_REDIRECT_URL=http://localhost:4000/auth-redirect
 ```
+Or rename `.env.example` to `.env` then add the Client ID and Endpoint for your Authgear Client Application.
 
 Ensure to add `http://localhost:4000/auth-redirect` as a redirect URI for your application in Authgear Portal.
 
