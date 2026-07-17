@@ -4,7 +4,12 @@ This repo is the sample code of this tutorial: https://docs.authgear.com/tutoria
 
 You can follow the tutorial to learn how to integrate Authgear with your React single page applications.
 
-## Environment setup
+### Create Free Authgear Account
+1. Goto [https://portal.authgear.com](https://portal.authgear.com) and create a free account (or login to your existing account).
+
+2. Then navigate to Applications and create a new client application of type Single Page Application.
+
+### Environment setup
 
 Create a `.env` file on the root directory of your project then copy and paste the content of `.env.template` to it. 
 
@@ -14,7 +19,7 @@ Ensure to add `http://localhost:4000/auth-redirect` as a redirect URI for your a
 
 Run `npm install` to install project dependencies.
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
